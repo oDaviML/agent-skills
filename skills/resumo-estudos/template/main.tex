@@ -1,0 +1,99 @@
+\documentclass[11pt]{article}
+
+% --- Codificacao e idioma ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+
+% --- Tipografia moderna ---
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --- Margens reduzidas (texto ocupa mais a pagina) ---
+\usepackage[a4paper,margin=1.8cm,top=2cm,bottom=2cm]{geometry}
+
+% --- Matematica ---
+\usepackage{amsmath,amssymb}
+
+% --- Tabelas ---
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{ragged2e}
+\usepackage{colortbl}
+\usepackage{float}
+
+% --- Blocos de codigo / pseudocodigo ---
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+
+% --- Caixas estilizadas para exemplos ---
+\usepackage[most]{tcolorbox}
+
+% --- Graficos ---
+\usepackage{graphicx}
+
+% --- Titulos de secao estilizados ---
+\usepackage{titlesec}
+
+% --- Paleta ---
+\definecolor{corPrincipal}{HTML}{2C5F8A}    % azul petroleo
+\definecolor{corSecundaria}{HTML}{4A4A4A}   % cinza escuro
+\definecolor{corCodigoBg}{HTML}{F4F6F8}     % cinza muito claro
+\definecolor{corCodigoBorda}{HTML}{D6DCE3}  % borda suave
+\definecolor{corTabelaHeader}{HTML}{E8EEF4} % fundo do cabecalho de tabela
+
+\usepackage[hidelinks,colorlinks=true,linkcolor=corPrincipal,urlcolor=corPrincipal]{hyperref}
+
+% Espacamento entre linhas um pouco mais arejado
+\usepackage{setspace}
+\setstretch{1.08}
+
+% Coluna de paragrafo justificada a esquerda para tabelas
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+% Estilo dos titulos: barra colorida e fonte sem serifa
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{corPrincipal}}
+  {\thesection}{0.6em}{}[{\color{corPrincipal!30}\titlerule[1pt]}]
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries\color{corSecundaria}}
+  {\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.4ex plus 1ex minus .2ex}{0.9ex}
+
+% Blocos de codigo/pseudocodigo: borda suave cinza-clara
+\fvset{fontsize=\small,xleftmargin=6pt,xrightmargin=6pt}
+\DefineVerbatimEnvironment{Pseudo}{Verbatim}%
+  {frame=single,framesep=8pt,rulecolor=\color{corCodigoBorda},%
+   framerule=0.6pt,fontsize=\small,formatcom=\color{corSecundaria}}
+
+% Cores das caixas de exemplo
+\definecolor{corExemploBorda}{HTML}{2C5F8A}
+\definecolor{corExemploBg}{HTML}{F0F5FA}
+\definecolor{corExemploTitulo}{HTML}{1F4666}
+
+% Caixa estilizada para "Exemplo / Questao da Lista"
+\newtcolorbox{exemplo}[1][Exemplo Prático]{%
+  breakable,
+  enhanced,
+  colback=corExemploBg,
+  colframe=corExemploBorda,
+  boxrule=0.6pt,
+  arc=3pt,
+  left=8pt, right=8pt, top=6pt, bottom=6pt,
+  fonttitle=\sffamily\bfseries\color{white},
+  coltitle=white,
+  colbacktitle=corExemploTitulo,
+  attach boxed title to top left={xshift=8pt, yshift=-2pt},
+  boxed title style={arc=2pt, boxrule=0pt},
+  title={#1}
+}
+
+\begin{document}
+
+\section{Introdução e Motivação}
+
+\begin{itemize}
+  \item \textbf{Conceito:} Definição.
+\end{itemize}
+
+\end{document}

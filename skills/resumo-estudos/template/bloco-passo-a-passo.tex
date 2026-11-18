@@ -1,0 +1,97 @@
+% --- Desenho de grafos (execucao passo a passo) ---
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,positioning}
+
+% Cores da caixa "Execucao Passo a Passo" (verde-petroleo, distinta das questoes)
+\definecolor{corPassoBorda}{HTML}{2E7D6B}
+\definecolor{corPassoBg}{HTML}{F3F8F6}
+\definecolor{corPassoTitulo}{HTML}{1E5A4C}
+% Cores de estado dos desenhos
+\definecolor{corArvore}{HTML}{2C5F8A}     % aresta/vertice ja escolhido
+\definecolor{corAtual}{HTML}{E07A1F}      % aresta/vertice examinado neste passo
+\definecolor{corRejeitada}{HTML}{C0392B}  % aresta rejeitada / problema
+\definecolor{corInativa}{HTML}{AAB3BC}    % aresta ainda nao usada
+
+% Caixa "Execucao Passo a Passo": barra lateral grossa, cantos retos, faixa de titulo
+\newtcolorbox{passoapasso}[1][]{%
+  breakable,
+  enhanced,
+  sharp corners,
+  colback=corPassoBg,
+  colframe=corPassoBorda,
+  boxrule=0.5pt,
+  leftrule=4pt,
+  left=10pt, right=8pt, top=6pt, bottom=6pt,
+  fonttitle=\sffamily\bfseries\small,
+  coltitle=white,
+  colbacktitle=corPassoBorda,
+  toptitle=3pt, bottomtitle=3pt,
+  title={$\blacktriangleright$\ Execução Passo a Passo --- #1}
+}
+
+% Estilos TikZ comuns
+\tikzset{
+  vtx/.style={circle, draw=corSecundaria, fill=white, line width=0.6pt,
+              minimum size=6mm, inner sep=0pt, font=\scriptsize\sffamily\bfseries},
+  vtxS/.style={vtx, draw=corArvore, fill=corArvore, text=white},
+  vtxAtual/.style={vtx, draw=corAtual, fill=corAtual, text=white},
+  vtxRej/.style={vtx, draw=corRejeitada, fill=corRejeitada!15, text=corRejeitada},
+  ar/.style={draw=corInativa, line width=0.7pt},
+  arSel/.style={draw=corArvore, line width=1.8pt},
+  arAtual/.style={draw=corAtual, line width=1.8pt},
+  arRej/.style={draw=corRejeitada, line width=1.1pt, dash pattern=on 3pt off 2pt},
+  arApagada/.style={draw=corInativa!50, line width=0.5pt, dash pattern=on 1pt off 1.5pt},
+  dir/.style={-{Stealth[length=2.2mm,width=1.8mm]}},
+  peso/.style={fill=corPassoBg, inner sep=0.8pt, font=\scriptsize\sffamily, text=corSecundaria},
+  rot/.style={font=\scriptsize\sffamily\bfseries, text=corAtual, inner sep=1pt}
+}
+
+% Painel de um passo: titulo, desenho e explicacao curta (3 por linha)
+\newcommand{\passo}[3]{%
+  \begin{minipage}[t]{0.325\linewidth}\centering
+    {\sffamily\footnotesize\bfseries\color{corPassoTitulo}#1}\par\smallskip
+    #2\par\smallskip
+    \parbox{\linewidth}{\footnotesize\RaggedRight #3}
+  \end{minipage}}
+% Painel largo (2 por linha), para grafos maiores
+\newcommand{\passoLargo}[3]{%
+  \begin{minipage}[t]{0.49\linewidth}\centering
+    {\sffamily\footnotesize\bfseries\color{corPassoTitulo}#1}\par\smallskip
+    #2\par\smallskip
+    \parbox{\linewidth}{\footnotesize\RaggedRight #3}
+  \end{minipage}}
+
+% Valor alterado no passo (laranja) e valor definitivo (azul)
+\newcommand{\novo}[1]{\textcolor{corAtual}{\textbf{#1}}}
+\newcommand{\fixo}[1]{\textcolor{corArvore}{\textbf{#1}}}
+
+% Legenda das cores dos desenhos
+\newcommand{\legendaPasso}{%
+  \begin{center}\footnotesize\sffamily
+  \tikz[baseline=-0.6ex]\draw[arSel](0,0)--(0.5,0); escolhida \qquad
+  \tikz[baseline=-0.6ex]\draw[arAtual](0,0)--(0.5,0); examinada no passo \qquad
+  \tikz[baseline=-0.6ex]\draw[arRej](0,0)--(0.5,0); rejeitada/problema \qquad
+  \tikz[baseline=-0.6ex]\draw[ar](0,0)--(0.5,0); ainda não usada\\[2pt]
+  \novo{laranja}: valor alterado no passo \qquad \fixo{azul}: valor definitivo
+  \end{center}}
+
+% Etapa em linha: desenho a esquerda, tabela/estado a direita (sem precisar rolar)
+% \etapa{titulo}{desenho}{conteudo da direita: tabela + 1-2 linhas}
+\newcommand{\etapa}[3]{%
+  \par\noindent
+  \begin{minipage}{\linewidth}
+  {\sffamily\footnotesize\bfseries\color{corPassoTitulo}#1}\par\smallskip
+  \begin{minipage}[c]{0.40\linewidth}\centering #2\end{minipage}\hfill
+  \begin{minipage}[c]{0.58\linewidth}\footnotesize\RaggedRight #3\end{minipage}
+  \end{minipage}\par\medskip
+  {\color{corPassoBorda!35}\hrule height 0.4pt}\par\medskip}
+% Variante com desenho mais largo (0.55 / 0.43)
+\newcommand{\etapaLarga}[3]{%
+  \par\noindent
+  \begin{minipage}{\linewidth}
+  {\sffamily\footnotesize\bfseries\color{corPassoTitulo}#1}\par\smallskip
+  \begin{minipage}[c]{0.55\linewidth}\centering #2\end{minipage}\hfill
+  \begin{minipage}[c]{0.43\linewidth}\footnotesize\RaggedRight #3\end{minipage}
+  \end{minipage}\par\medskip
+  {\color{corPassoBorda!35}\hrule height 0.4pt}\par\medskip}
+

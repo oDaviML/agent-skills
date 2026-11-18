@@ -1,0 +1,3 @@
+interface:
+  display_name: "Grilling de Produto"
+  short_description: "Definir um produto por rodadas de perguntas e publicar docs e cards no Linear"

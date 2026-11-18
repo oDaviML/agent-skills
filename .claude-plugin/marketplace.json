@@ -1,0 +1,19 @@
+{
+  "name": "agent-skills",
+  "owner": {
+    "name": "Davi Martins",
+    "url": "https://github.com/oDaviML"
+  },
+  "plugins": [
+    {
+      "name": "agent-skills",
+      "description": "Skills para geração de materiais de estudo em LaTeX (resumo-estudos) e definição completa de produto com backlog no Linear (grilling-produto).",
+      "source": "./",
+      "skills": [
+        "./skills/resumo-estudos",
+        "./skills/grilling-produto",
+        "./skills/grill-produto"
+      ]
+    }
+  ]
+}

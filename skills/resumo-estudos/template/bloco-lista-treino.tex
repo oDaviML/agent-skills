@@ -1,0 +1,45 @@
+% --- Lista de exercicios: niveis, questoes e gabarito ---
+\definecolor{corFacil}{HTML}{2E7D32}
+\definecolor{corMedio}{HTML}{B7791F}
+\definecolor{corDificil}{HTML}{C0392B}
+\newtcbox{\etiqueta}[1]{on line, colback=#1, colframe=#1, coltext=white,
+  arc=2pt, boxrule=0pt, left=3pt, right=3pt, top=1pt, bottom=1pt,
+  fontupper=\sffamily\bfseries\scriptsize}
+\newcommand{\facil}{\etiqueta{corFacil}{FÁCIL}}
+\newcommand{\medio}{\etiqueta{corMedio}{MÉDIO}}
+\newcommand{\dificil}{\etiqueta{corDificil}{DIFÍCIL}}
+
+% Questao: \begin{questao}{numero}{\facil|\medio|\dificil} ... \end{questao}
+\newtcolorbox{questao}[2]{%
+  breakable, enhanced, sharp corners,
+  colback=white, colframe=corPrincipal!45,
+  boxrule=0.4pt, leftrule=2.5pt,
+  left=8pt, right=8pt, top=5pt, bottom=6pt,
+  before skip=8pt, after skip=8pt,
+  title={\sffamily\bfseries\color{corPrincipal}Questão #1\hfill #2},
+  coltitle=corPrincipal, colbacktitle=corTabelaHeader,
+  toptitle=2pt, bottomtitle=2pt
+}
+
+% Alternativas de multipla escolha: \begin{alternativas} \item ... \end{alternativas}
+\newenvironment{alternativas}%
+  {\begin{enumerate}\renewcommand{\labelenumi}{(\alph{enumi})}\setlength{\itemsep}{1pt}}%
+  {\end{enumerate}}
+
+% Inicio do gabarito de uma secao (pagina nova, para nao ver as respostas antes)
+\newcommand{\gabarito}{%
+  \clearpage
+  \subsection*{Gabarito da Seção \thesection}
+  \addcontentsline{toc}{subsection}{Gabarito da Seção \thesection}}
+
+% Resposta: \begin{resposta}{numero} \textbf{Resposta:} ... \textbf{Explicação:} ... \end{resposta}
+\newtcolorbox{resposta}[1]{%
+  breakable, enhanced, sharp corners,
+  colback=corPassoBg, colframe=corPassoBorda,
+  boxrule=0.4pt, leftrule=2.5pt,
+  left=8pt, right=8pt, top=5pt, bottom=6pt,
+  before skip=6pt, after skip=6pt,
+  fonttitle=\sffamily\bfseries\small, coltitle=white, colbacktitle=corPassoBorda,
+  toptitle=2pt, bottomtitle=2pt,
+  title={Resposta da Questão #1}
+}

@@ -1,0 +1,20 @@
+{
+  "name": "agent-skills",
+  "displayName": "Agent Skills — LaTeX & Product Grill",
+  "version": "1.0.0",
+  "description": "Skills para geração de resumos, listas de treino e resoluções passo a passo em LaTeX (resumo-estudos) e entrevista implacável de definição de produto com documentação completa e publicação no Linear (grilling-produto).",
+  "author": {
+    "name": "Davi Martins",
+    "url": "https://github.com/oDaviML"
+  },
+  "homepage": "https://github.com/oDaviML/agent-skills",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oDaviML/agent-skills.git"
+  },
+  "suggestedPrompts": [
+    "Gere um resumo de estudos em LaTeX a partir destes slides e lista de exercícios",
+    "Crie uma lista de questões de treino em LaTeX com níveis fácil, médio e difícil e gabarito",
+    "Me sabatine sobre minha ideia de produto (grill produto) e depois publique o projeto e os cards no Linear"
+  ]
+}

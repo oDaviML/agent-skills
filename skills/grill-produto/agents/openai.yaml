@@ -1,0 +1,5 @@
+interface:
+  display_name: "Grill Produto"
+  short_description: "Definir um produto por entrevista"
+policy:
+  allow_implicit_invocation: false
